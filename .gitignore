@@ -1,0 +1,21 @@
+# ROS workspace output
+build/
+install/
+log/
+# Python/generated caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+# Local settings and credentials
+.codex/
+.aws/
+.agents/
+.env
+.env.*
+.vscode/
+.idea/
+# Supplied assignment resources are not needed to run the simulation
+Resources-20261011/
+Task_sheet.pdf
+analysis/

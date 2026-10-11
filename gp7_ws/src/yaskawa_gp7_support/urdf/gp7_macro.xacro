@@ -1,0 +1,180 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+	<!-- Approximate link inertia used only for Gazebo simulation. The meshes and
+	     kinematic geometry remain from yaskawa_gp7_support. -->
+	<xacro:macro name="gp7_sim_inertial" params="mass">
+		<inertial><mass value="${mass}"/><inertia ixx="0.02" ixy="0" ixz="0" iyy="0.02" iyz="0" izz="0.02"/></inertial>
+	</xacro:macro>
+	<!-- Torque defaults are upstream placeholders. Simulation may override
+	     these; they are not measured manufacturer actuator ratings. -->
+	<xacro:macro name="yaskawa_gp7" params="prefix effort_s:=1 effort_l:=1 effort_u:=1 effort_r:=1 effort_b:=1 effort_t:=1">
+		<!-- link list -->
+		<link name="${prefix}base_link">
+			<xacro:gp7_sim_inertial mass="15.0"/>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/visual/gp7_base_axis.stl" />
+				</geometry>
+				<material name="blue">
+					<color rgba="0 0 1 1"/>
+				</material>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/collision/gp7_base_axis.stl" />
+				</geometry>
+				<material name="yellow">
+					<color rgba="0 1 1 1"/>
+				</material>
+			</collision>
+		</link>
+		<link name="${prefix}vendor_base_link" />
+		<link name="${prefix}link_s">
+			<xacro:gp7_sim_inertial mass="5.0"/>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/visual/gp7_s_axis.stl"/>
+				</geometry>
+				<material name="silver">
+					<color rgba="0.8 0.8 0.8 1"/>
+				</material>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/collision/gp7_s_axis.stl" />
+				</geometry>
+				<material name="yellow"/>
+			</collision>
+		</link>
+		<link name="${prefix}link_l">
+			<xacro:gp7_sim_inertial mass="6.0"/>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/visual/gp7_l_axis.stl"/>
+				</geometry>
+				<material name="blue"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/collision/gp7_l_axis.stl" />
+				</geometry>
+				<material name="yellow"/>
+			</collision>
+		</link>
+		<link name="${prefix}link_u">
+			<xacro:gp7_sim_inertial mass="6.0"/>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/visual/gp7_u_axis.stl"/>
+				</geometry>
+				<material name="silver"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/collision/gp7_u_axis.stl" />
+				</geometry>
+				<material name="yellow"/>
+			</collision>
+		</link>
+		<link name="${prefix}link_r">
+			<xacro:gp7_sim_inertial mass="2.0"/>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/visual/gp7_r_axis.stl"/>
+				</geometry>
+				<material name="blue"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/collision/gp7_r_axis.stl" />
+				</geometry>
+				<material name="yellow"/>
+			</collision>
+		</link>
+		<link name="${prefix}link_b">
+			<xacro:gp7_sim_inertial mass="1.5"/>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/visual/gp7_b_axis.stl"/>
+				</geometry>
+				<material name="silver"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/collision/gp7_b_axis.stl" />
+				</geometry>
+				<material name="yellow"/>
+			</collision>
+		</link>
+		<link name="${prefix}link_t">
+			<xacro:gp7_sim_inertial mass="1.0"/>
+			<visual>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/visual/gp7_t_axis.stl" />
+				</geometry>
+				<material name="blue"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="file://$(find yaskawa_gp7_support)/meshes/gp7/collision/gp7_t_axis.stl" />
+				</geometry>
+				<material name="yellow"/>
+			</collision>
+		</link>
+		<link name="${prefix}flange"><xacro:gp7_sim_inertial mass="0.1"/></link>
+
+		<!-- joint list -->
+		<joint name="${prefix}joint_s" type="revolute">
+			<parent link="${prefix}base_link"/>
+			<child link="${prefix}link_s"/>
+			<origin xyz="0 0 0" />
+			<axis xyz="0 0 1" />
+			<limit lower="${-170 * pi / 180}" upper="${170 * pi / 180}" effort="${effort_s}" velocity="${375 * pi / 180}" />
+		</joint>
+		<joint name="${prefix}joint_vendor_base" type="fixed">
+			<parent link="${prefix}base_link"/>
+			<child link="${prefix}vendor_base_link"/>
+			<origin xyz="0 0 0.330" />
+		</joint>
+		<joint name="${prefix}joint_l" type="revolute">
+			<parent link="${prefix}link_s"/>
+			<child link="${prefix}link_l"/>
+			<origin xyz="0.040 0 0.330" />
+			<axis xyz="0 1 0" />
+			<limit lower="${-65 * pi / 180}" upper="${145 * pi / 180}" effort="${effort_l}" velocity="${315 * pi / 180}" />
+		</joint>
+		<joint name="${prefix}joint_u" type="revolute">
+			<parent link="${prefix}link_l"/>
+			<child link="${prefix}link_u"/>
+			<origin xyz="0 0 0.445" />
+			<axis xyz="0 -1 0" />
+			<limit lower="${-116 * pi / 180}" upper="${255 * pi / 180}" effort="${effort_u}" velocity="${410 * pi / 180}" />
+		</joint>
+		<joint name="${prefix}joint_r" type="revolute">
+			<parent link="${prefix}link_u"/>
+			<child link="${prefix}link_r"/>
+			<origin xyz="0.0 0 0.040" />
+			<axis xyz="-1 0 0" />
+			<limit lower="${-190 * pi / 180}" upper="${190 * pi / 180}" effort="${effort_r}" velocity="${550 * pi / 180}" />
+		</joint>
+		<joint name="${prefix}joint_b" type="revolute">
+			<parent link="${prefix}link_r"/>
+			<child link="${prefix}link_b"/>
+			<origin xyz="0.440 0 0" />
+			<axis xyz="0 -1 0" />
+			<limit lower="${-135 * pi / 180}" upper="${135 * pi / 180}" effort="${effort_b}" velocity="${550 * pi / 180}" />
+		</joint>
+		<joint name="${prefix}joint_t" type="revolute">
+			<parent link="${prefix}link_b"/>
+			<child link="${prefix}link_t"/>
+			<origin xyz="0.080 0 0" />
+			<axis xyz="-1 0 0" />
+			<limit lower="${-360 * pi / 180}" upper="${360 * pi / 180}" effort="${effort_t}" velocity="${1000 * pi / 180}" />
+		</joint>
+		<joint name="${prefix}joint_flange" type="fixed">
+			<parent link="${prefix}link_t"/>
+			<child link="${prefix}flange"/>
+			<origin rpy="0 ${-0.5 * pi} ${pi}"/>
+		</joint>
+	</xacro:macro>
+</robot>

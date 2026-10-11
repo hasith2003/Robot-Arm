@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>gp7_simulation</name>
+  <version>0.1.0</version>
+  <description>Gazebo scene and launch files for the GP7 project.</description>
+  <maintainer email="team@example.com">EN3563 robotics team</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>gp7_description</exec_depend><exec_depend>launch</exec_depend><exec_depend>launch_ros</exec_depend><exec_depend>robot_state_publisher</exec_depend><exec_depend>ros_gz_sim</exec_depend><exec_depend>ros_gz_bridge</exec_depend><exec_depend>std_msgs</exec_depend><exec_depend>xacro</exec_depend><exec_depend>controller_manager</exec_depend><exec_depend>joint_state_broadcaster</exec_depend><exec_depend>joint_trajectory_controller</exec_depend><exec_depend>gz_ros2_control</exec_depend>
+  <export><build_type>ament_python</build_type></export>
+  <exec_depend>gp7_task</exec_depend>
+  <exec_depend>gp7_grasp</exec_depend>
+</package>
