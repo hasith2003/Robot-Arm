@@ -118,8 +118,9 @@ The workflow refers to assignment resources supplied separately.
 - Grasping uses an explicitly commanded fixed joint after measured alignment;
   it is a simulation abstraction, not a friction-based grasp model.
 - Arm masses, inertias and torque budgets are simulation approximations.
-- The task uses `urdf_model.py`. The older D-H implementation is provisional
-  and does not establish the final report's D-H derivation.
+- The task uses `urdf_model.py`. The standard D-H implementation in
+  `kinematics.py` now matches the imported URDF, including the grasp TCP.
+  See [the frame assignment and derivation](KINEMATICS_DERIVATION.md).
 
 To build and run the five mathematical/state tests in the fresh clone:
 

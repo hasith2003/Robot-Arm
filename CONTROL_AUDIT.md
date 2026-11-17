@@ -52,3 +52,13 @@ The demo passed its measured target check, four-second hold, return-home check, 
 
 - [Jazzy gz_ros2_control documentation](https://control.ros.org/jazzy/doc/gz_ros2_control/doc/index.html): position interfaces use velocity commands proportional to position error; holding is enabled by default.
 - [Gazebo 8 detachable-joint documentation](https://gazebosim.org/api/sim/8/src_2systems_2detachable__joint_2DetachableJoint_8hh.html): the plugin initially attaches two models.
+
+
+## Kinematics correction — 2026-11-17
+
+The earlier provisional-D-H finding above is resolved. `kinematics.py` now
+uses a standard-D-H chain derived from the imported URDF, correct U limits,
+explicit base/flange/TCP transforms, and a rotation-log IK orientation error
+that handles 180 degrees. See `KINEMATICS_DERIVATION.md` for the frame assignment,
+table, equations and independent URDF comparisons. The full suite now has
+12 passing tests. This validates the imported geometry, not CAD dimensions.

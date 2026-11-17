@@ -1,5 +1,5 @@
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, EmitEvent, IncludeLaunchDescription, RegisterEventHandler, SetEnvironmentVariable
+from launch.actions import DeclareLaunchArgument, EmitEvent, IncludeLaunchDescription, LogInfo, RegisterEventHandler, SetEnvironmentVariable
 from launch.event_handlers import OnProcessExit
 from launch.events import Shutdown
 from launch.conditions import IfCondition
@@ -43,10 +43,16 @@ def generate_launch_description():
     def after_controllers(event, context):
         if event.returncode != 0:
             return [EmitEvent(event=Shutdown(reason='GP7 controller activation failed'))]
-        return [Node(
+        task = Node(
             package='gp7_task', executable='pick_place', output='screen',
             condition=IfCondition(LaunchConfiguration('pick_place')),
-        ), Node(
+        )
+        def after_task(task_event, context):
+            if task_event.returncode != 0:
+                return [LogInfo(msg='ERROR: Pick-and-place failed; stopping simulation. See task error above.'),
+                        EmitEvent(event=Shutdown(reason='GP7 pick-and-place failed'))]
+            return []
+        return [RegisterEventHandler(OnProcessExit(target_action=task, on_exit=after_task)), task, Node(
             package='gp7_task', executable='joint_motion_demo', output='screen',
             condition=IfCondition(PythonExpression(["'", LaunchConfiguration('demo'), "' == 'true' and '", LaunchConfiguration('pick_place'), "' != 'true'"])),
         )]

@@ -1,0 +1,71 @@
+{
+  "configurations": 1003,
+  "maxima": {
+    "fk_position_m": 6.77599954797753e-16,
+    "fk_rotation_rad": 8.130062465403937e-16,
+    "dh1_dot": 3.3306690738754696e-16,
+    "dh2_residual_m": 2.5133742693021536e-16,
+    "joint_axis_error": 9.171947447016606e-16,
+    "joint_axis_line_error_m": 6.48981780169444e-16,
+    "handedness_error": 5.438959822042073e-16,
+    "wrist_origin_difference_m": 0.0,
+    "wrist_axes_intersection_error_m": 6.48981780169444e-16,
+    "tcp_wrist_offset_error_m": 6.664589960562512e-16,
+    "terminal_tcp_row_matrix_error": 2.220446049250313e-16
+  },
+  "velocity_identity_configurations": 100,
+  "velocity_identity_errors": {
+    "linear_m_s": 2.712165371640101e-10,
+    "angular_rad_s": 6.371961839004077e-10
+  },
+  "moving_o3_to_wrist_dh2_line_miss_m": 0.44,
+  "geometric_ik_verified_targets": 1003,
+  "geometric_ik_max_position_error_m": 2.4548390570437935e-15,
+  "geometric_ik_max_rotation_error_rad": 9.764762631304495e-14,
+  "effective_forearm_length_m": 0.44181444068749043,
+  "forearm_angle_offset_deg": 84.8055710922652,
+  "endpoint_diagnostics": [
+    {
+      "segment": "approach",
+      "max_endpoint_speed_rad_s": 1.6263032587282567e-19,
+      "max_endpoint_acceleration_rad_s2": 6.93135336228487e-05,
+      "optional_quintic_endpoint_speed_rad_s": 0.0,
+      "optional_quintic_endpoint_acceleration_rad_s2": 0.0
+    },
+    {
+      "segment": "descent",
+      "max_endpoint_speed_rad_s": 0.0,
+      "max_endpoint_acceleration_rad_s2": 0.00010136939401694453,
+      "optional_quintic_endpoint_speed_rad_s": 1.4210854715202004e-14,
+      "optional_quintic_endpoint_acceleration_rad_s2": 4.547473508864641e-13
+    },
+    {
+      "segment": "lift",
+      "max_endpoint_speed_rad_s": 1.0842021724855044e-19,
+      "max_endpoint_acceleration_rad_s2": 0.000138530749189774,
+      "optional_quintic_endpoint_speed_rad_s": 1.4210854715202004e-14,
+      "optional_quintic_endpoint_acceleration_rad_s2": 4.547473508864641e-13
+    },
+    {
+      "segment": "transfer",
+      "max_endpoint_speed_rad_s": 2.168404344971009e-19,
+      "max_endpoint_acceleration_rad_s2": 9.056642464593152e-05,
+      "optional_quintic_endpoint_speed_rad_s": 7.105427357601002e-15,
+      "optional_quintic_endpoint_acceleration_rad_s2": 1.1368683772161603e-13
+    },
+    {
+      "segment": "lower",
+      "max_endpoint_speed_rad_s": 0.0,
+      "max_endpoint_acceleration_rad_s2": 7.810306933686735e-05,
+      "optional_quintic_endpoint_speed_rad_s": 1.4210854715202004e-14,
+      "optional_quintic_endpoint_acceleration_rad_s2": 2.2737367544323206e-13
+    },
+    {
+      "segment": "retreat",
+      "max_endpoint_speed_rad_s": 0.0,
+      "max_endpoint_acceleration_rad_s2": 7.814839066777428e-05,
+      "optional_quintic_endpoint_speed_rad_s": 1.4210854715202004e-14,
+      "optional_quintic_endpoint_acceleration_rad_s2": 4.547473508864641e-13
+    }
+  ]
+}

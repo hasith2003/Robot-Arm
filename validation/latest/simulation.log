@@ -1,0 +1,293 @@
+Starting >>> gp7_kinematics
+Starting >>> yaskawa_gp7_support
+Starting >>> gp7_grasp
+Finished <<< yaskawa_gp7_support [0.35s]
+Starting >>> gp7_description
+Finished <<< gp7_grasp [0.36s]
+Finished <<< gp7_description [0.14s]
+Finished <<< gp7_kinematics [1.94s]
+Starting >>> gp7_task
+Finished <<< gp7_task [1.70s]
+Starting >>> gp7_simulation
+Finished <<< gp7_simulation [1.82s]
+
+Summary: 6 packages finished [5.61s]
+[INFO] [launch]: All log files can be found below /tmp/gp7-audit-video-ros/2026-11-17-17-20-19-581002-hasith-Vivobook-ASUSLaptop-M3500QC-M3500QC-31623
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [31627]
+[INFO] [parameter_bridge-2]: process started with pid [31628]
+[INFO] [robot_state_publisher-3]: process started with pid [31629]
+[INFO] [create-4]: process started with pid [31631]
+[robot_state_publisher-3] [INFO] [1794916220.065498526] [robot_state_publisher]: Robot initialized
+[create-4] [INFO] [1794916220.074298098] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-2] [INFO] [1794916220.093411850] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1794916220.094732791] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/box_b/attach (std_msgs/msg/Empty) -> /box_b/attach (gz.msgs.Empty)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1794916220.096138743] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/box_b/detach (std_msgs/msg/Empty) -> /box_b/detach (gz.msgs.Empty)] (Lazy 0)
+[gazebo-1] [Msg] Received world [/home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/worlds/pick_place.sdf] from the GUI.
+[gazebo-1] [Msg] Gazebo Sim Server v8.15.0
+[gazebo-1] [Msg] Loading SDF world file[/home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/worlds/pick_place.sdf].
+[gazebo-1] [Msg] Serving entity system service on [/entity/system/add]
+[gazebo-1] [Msg] Create service on [/world/gp7_pick_place/create_multiple] (async)
+[gazebo-1] [Msg] Create service on [/world/gp7_pick_place/create_multiple/blocking] (blocking)
+[gazebo-1] [Msg] Remove service on [/world/gp7_pick_place/remove] (async)
+[gazebo-1] [Msg] Remove service on [/world/gp7_pick_place/remove/blocking] (blocking)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose] (async)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose/blocking] (blocking)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose_vector] (async)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose_vector/blocking] (blocking)
+[gazebo-1] [Msg] Light configuration service on [/world/gp7_pick_place/light_config] (async)
+[gazebo-1] [Msg] Light configuration service on [/world/gp7_pick_place/light_config/blocking] (blocking)
+[gazebo-1] [Msg] Physics service on [/world/gp7_pick_place/set_physics] (async)
+[gazebo-1] [Msg] Physics service on [/world/gp7_pick_place/set_physics/blocking] (blocking)
+[gazebo-1] [Msg] SphericalCoordinates service on [/world/gp7_pick_place/set_spherical_coordinates] (async)
+[gazebo-1] [Msg] SphericalCoordinates service on [/world/gp7_pick_place/set_spherical_coordinates/blocking] (blocking)
+[gazebo-1] [Msg] Enable collision service on [/world/gp7_pick_place/enable_collision] (async)
+[gazebo-1] [Msg] Enable collision service on [/world/gp7_pick_place/enable_collision/blocking] (blocking)
+[gazebo-1] [Msg] Disable collision service on [/world/gp7_pick_place/disable_collision] (async)
+[gazebo-1] [Msg] Disable collision service on [/world/gp7_pick_place/disable_collision/blocking] (blocking)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/visual_config] (async)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/visual_config/blocking] (blocking)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/wheel_slip] (async)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/wheel_slip/blocking] (blocking)
+[gazebo-1] [Msg] Loaded level [default]
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[create-4] [INFO] [1794916220.806719820] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-4]: process has finished cleanly [pid 31631]
+[INFO] [spawner-5]: process started with pid [31735]
+[gazebo-1] [Msg] Serving world controls on [/world/gp7_pick_place/control], [/world/gp7_pick_place/control/state] and [/world/gp7_pick_plac[Msg] Gazebo Sim GUI    v8.15.0
+[gazebo-1] [GUI] [Msg] Loading config [/home/hasith/.gz/sim/8/gui.config]
+[gazebo-1] [GUI] [Msg] Added plugin [3D View] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [MinimalScene] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMinimalScene.so]
+[gazebo-1] [GUI] [Msg] Currently tracking topic on [/gui/currently_tracked]
+[gazebo-1] [GUI] [Msg] Added plugin [Entity Context Menu] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [EntityContextMenuPlugin] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libEntityContextMenuPlugin.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Scene Manager] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [GzSceneManager] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libGzSceneManager.so]
+[gazebo-1] [GUI] [Msg] Camera view controller topic advertised on [/gui/camera/view_control]
+[gazebo-1] [GUI] [Msg] Camera reference visual topic advertised on [/gui/camera/view_control/reference_visual]
+[gazebo-1] [GUI] [Msg] Camera view control sensitivity advertised on [/gui/camera/view_control/sensitivity]
+[gazebo-1] [GUI] [Msg] Added plugin [Interactive view control] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [InteractiveViewControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libInteractiveViewControl.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Camera tracking] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [CameraTracking] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libCameraTracking.so]
+[gazebo-1] [GUI] [Msg] Listening to stats on [/world/gp7_pick_place/stats]
+[gazebo-1] [GUI] [Msg] Added plugin [Marker Manager] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [MarkerManager] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libMarkerManager.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Select entities] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [SelectEntities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSelectEntities.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Spawn] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Spawn] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libSpawn.so]
+[gazebo-1] [GUI] [Msg] View as transparent service on [/gui/view/transparent]
+[gazebo-1] [GUI] [Msg] View as wireframes service on [/gui/view/wireframes]
+[gazebo-1] [GUI] [Msg] View center of mass service on [/gui/view/com]
+[spawner-5] [INFO] [1794916221.332449998] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/ComponentInspector/ComponentInspector.qml:251:3: QML Dialog: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Msg] View inertia service on [/gui/view/inertia]
+[gazebo-1] [GUI] [Msg] View collisions service on [/gui/view/collisions]
+[gazebo-1] [GUI] [Msg] View joints service on [/gui/view/joints]
+[gazebo-1] [GUI] [Msg] View frames service on [/gui/view/frames]
+[gazebo-1] [GUI] [Msg] Added plugin [Visualization capabilities] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [VisualizationCapabilities] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libVisualizationCapabilities.so]
+[gazebo-1] [GUI] [Msg] Using world control service [/world/gp7_pick_place/control]
+[gazebo-1] [GUI] [Msg] Listening to stats on [/world/gp7_pick_place/stats]
+[gazebo-1] [GUI] [Msg] Added plugin [World control] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [WorldControl] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldControl.so]
+[gazebo-1] [GUI] [Msg] Listening to stats on [/world/gp7_pick_place/stats]
+[gazebo-1] [GUI] [Msg] Added plugin [World stats] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [WorldStats] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libWorldStats.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Shapes] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Shapes] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libShapes.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Lights] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Lights] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libLights.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Transform control] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [TransformControl] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libTransformControl.so]
+[gazebo-1] [GUI] [Msg] Screenshot service on [/gui/screenshot]
+[gazebo-1] [GUI] [Msg] Added plugin [Screenshot] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [Screenshot] from path [/opt/ros/jazzy/opt/gz_gui_vendor/lib/gz-gui-8/plugins/libScreenshot.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Copy/Paste] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [CopyPaste] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libCopyPaste.so]
+[gazebo-1] [GUI] [Msg] Added plugin [Component inspector] to main window
+[gazebo-1] [GUI] [Msg] Loaded plugin [ComponentInspector] from path [/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/gui/libComponentInspector.so]
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:413:17: QML ToolButton: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file:///usr/lib/x86_64-linux-gnu/qt5/qml/QtQuick/Dialogs/DefaultFileDialog.qml:309:21: QML Button: Binding loop detected for property "implicitHeight"
+[gazebo-1] [GUI] [Wrn] [Application.cc:908] [QT] file::/WorldStats/WorldStats.qml:53:3: QML RowLayout: Binding loop detected for property "x"
+[gazebo-1] [INFO] [1794916222.386214112] [gz_ros_control]: [gz_ros2_control] Fixed joint ['world_to_base'] (Entity='51') is skipped.
+[gazebo-1] [INFO] [1794916222.386353133] [gz_ros_control]: [gz_ros2_control] Fixed joint ['tool_fixed_joint'] (Entity='58') is skipped.
+[gazebo-1] [INFO] [1794916222.387658847] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1794916222.399826688] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1794916222.399869077] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1794916222.407203668] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1794916222.407457284] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [INFO] [1794916222.566971972] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1794916222.567199480] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1794916222.576240035] [gz_ros_control]: The position_proportional_gain has been set to: 0.5
+[gazebo-1] [INFO] [1794916222.576387602] [gz_ros_control]: Loading joint: joint_s
+[gazebo-1] [INFO] [1794916222.576402781] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576413571] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576421105] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576434551] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576441273] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576466461] [gz_ros_control]: Loading joint: joint_l
+[gazebo-1] [INFO] [1794916222.576474616] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576481238] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576488492] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576495014] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576501176] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576516344] [gz_ros_control]: Loading joint: joint_u
+[gazebo-1] [INFO] [1794916222.576523067] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576529559] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576536512] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576545078] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576553123] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576566879] [gz_ros_control]: Loading joint: joint_r
+[gazebo-1] [INFO] [1794916222.576573391] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576579343] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576585935] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576591906] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576598398] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576610531] [gz_ros_control]: Loading joint: joint_b
+[gazebo-1] [INFO] [1794916222.576618236] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576626521] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576635468] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576641600] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576647280] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576661086] [gz_ros_control]: Loading joint: joint_t
+[gazebo-1] [INFO] [1794916222.576673489] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576679791] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576685873] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576692245] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576698256] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576716550] [gz_ros_control]: Loading joint: left_finger_joint
+[gazebo-1] [INFO] [1794916222.576723894] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576730817] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576737590] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576743721] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576750083] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576764621] [gz_ros_control]: Loading joint: right_finger_joint
+[gazebo-1] [INFO] [1794916222.576771464] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794916222.576778106] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576784458] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794916222.576790379] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794916222.576796591] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794916222.576968975] [controller_manager]: Initialize hardware 'GP7GazeboSystem' 
+[gazebo-1] [WARN] [1794916222.577038105] [controller_manager.hardware_component.system.GP7GazeboSystem]: Executor is not available during hardware component initialization for 'GP7GazeboSystem'. Skipping node creation!
+[gazebo-1] [INFO] [1794916222.577164873] [controller_manager]: Successful initialization of hardware 'GP7GazeboSystem'
+[gazebo-1] [INFO] [1794916222.577457222] [controller_manager]: Activating component 'GP7GazeboSystem'.
+[gazebo-1] [INFO] [1794916222.577503509] [resource_manager]: 'configure' hardware 'GP7GazeboSystem' 
+[gazebo-1] [INFO] [1794916222.577519980] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1794916222.577535219] [resource_manager]: Successful 'configure' of hardware 'GP7GazeboSystem'
+[gazebo-1] [INFO] [1794916222.577561558] [resource_manager]: 'activate' hardware 'GP7GazeboSystem' 
+[gazebo-1] [INFO] [1794916222.577610440] [resource_manager]: Successful 'activate' of hardware 'GP7GazeboSystem'
+[gazebo-1] [WARN] [1794916222.577812129] [controller_manager]: Component 'GP7GazeboSystem' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1794916222.577833980] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gazebo-1] [INFO] [1794916222.585955138] [controller_manager]: Loading controller : 'joint_state_broadcaster' of type 'joint_state_broadcaster/JointStateBroadcaster'
+[gazebo-1] [INFO] [1794916222.586032614] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1794916222.594474865] [controller_manager]: Controller 'joint_state_broadcaster' node arguments: --ros-args --params-file /home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/config/gp7_controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-5] [INFO] [1794916222.617179453] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[gazebo-1] [INFO] [1794916222.618186274] [controller_manager]: Configuring controller: 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1794916222.618457163] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[gazebo-1] [INFO] [1794916222.639905040] [controller_manager]: Loading controller : 'arm_controller' of type 'joint_trajectory_controller/JointTrajectoryController'
+[gazebo-1] [INFO] [1794916222.639965383] [controller_manager]: Loading controller 'arm_controller'
+[gazebo-1] [INFO] [1794916222.648715413] [controller_manager]: Controller 'arm_controller' node arguments: --ros-args --params-file /home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/config/gp7_controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-5] [INFO] [1794916222.671290377] [spawner_joint_state_broadcaster]: Loaded arm_controller
+[gazebo-1] [INFO] [1794916222.671532331] [controller_manager]: Configuring controller: 'arm_controller'
+[gazebo-1] [INFO] [1794916222.671782061] [arm_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gazebo-1] [INFO] [1794916222.671814762] [arm_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gazebo-1] [INFO] [1794916222.671855158] [arm_controller]: Using 'splines' interpolation method.
+[gazebo-1] [INFO] [1794916222.675984456] [arm_controller]: Action status changes will be monitored at 20.00 Hz.
+[gazebo-1] [INFO] [1794916222.683262530] [arm_controller]: Setting initial scaling factor to 1.000000
+[gazebo-1] [INFO] [1794916222.683292817] [arm_controller]: No scaling interface set. This controller will not read speed scaling from the hardware.
+[gazebo-1] [INFO] [1794916222.684726160] [controller_manager]: Loading controller : 'gripper_controller' of type 'joint_trajectory_controller/JointTrajectoryController'
+[gazebo-1] [INFO] [1794916222.684758421] [controller_manager]: Loading controller 'gripper_controller'
+[gazebo-1] [INFO] [1794916222.685089533] [controller_manager]: Controller 'gripper_controller' node arguments: --ros-args --params-file /home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/config/gp7_controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-5] [INFO] [1794916222.703983491] [spawner_joint_state_broadcaster]: Loaded gripper_controller
+[gazebo-1] [INFO] [1794916222.704203955] [controller_manager]: Configuring controller: 'gripper_controller'
+[gazebo-1] [INFO] [1794916222.704370508] [gripper_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gazebo-1] [INFO] [1794916222.704419410] [gripper_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gazebo-1] [INFO] [1794916222.704449647] [gripper_controller]: Using 'splines' interpolation method.
+[gazebo-1] [INFO] [1794916222.705862331] [gripper_controller]: Action status changes will be monitored at 20.00 Hz.
+[gazebo-1] [INFO] [1794916222.710576669] [gripper_controller]: Setting initial scaling factor to 1.000000
+[gazebo-1] [INFO] [1794916222.710632203] [gripper_controller]: No scaling interface set. This controller will not read speed scaling from the hardware.
+[gazebo-1] [INFO] [1794916222.712462882] [controller_manager]: Activating controllers: [ joint_state_broadcaster arm_controller gripper_controller ]
+[gazebo-1] [WARN] [1794916224.438448145] [gz_ros_control]:  Desired controller update period (0.01 s) is slower than the gazebo simulation period (0.001 s).
+[gazebo-1] [INFO] [1794916224.446894975] [controller_manager]: Successfully switched controllers!
+[spawner-5] [INFO] [1794916224.458659238] [spawner_joint_state_broadcaster]: Configured and activated all the parsed controllers list : ['joint_state_broadcaster', 'arm_controller', 'gripper_controller']!
+[INFO] [spawner-5]: process has finished cleanly [pid 31735]
+[INFO] [pick_place-6]: process started with pid [31909]
+[pick_place-6] [INFO] [1794916227.283093233] [gp7_pick_place]: Planning pick=[ 0.35       -0.25        0.02499942], place=[0.5   0.3   0.225], pregrasp joints=[-6.20249486e-01  2.65077970e-01 -7.28765287e-01  7.64713253e-17
+[pick_place-6]  -5.76953070e-01  6.20249486e-01]
+[gazebo-1] [GUI] [Msg] Cue/playback/control]
+[gazebo-1] [Msg] Serving GUI information on [/world/gp7_pick_place/gui/info]
+[gazebo-1] [Msg] World [gp7_pick_place] initialized with [physics] physics profile.
+[gazebo-1] [Msg] Serving world SDF generation service on [/world/gp7_pick_place/generate_world_sdf]
+[gazebo-1] [Msg] Serving world names on [/gazebo/worlds]
+[gazebo-1] [Msg] Resource path add service on [/gazebo/resource_paths/add].
+[gazebo-1] [Msg] Resource path get service on [/gazebo/resource_paths/get].
+[gazebo-1] [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
+[gazebo-1] [Msg] Resource paths published on [/gazebo/resource_paths].
+[gazebo-1] [Msg] Server control service on [/server_control].
+[gazebo-1] [Msg] Found no publishers on /stats, adding root stats topic
+[gazebo-1] [Msg] Found no publishers on /clock, adding root clock topic
+[gazebo-1] [Msg] Serving scene information on [/world/gp7_pick_place/scene/info]
+[gazebo-1] [Msg] Serving graph information on [/world/gp7_pick_place/scene/graph]
+[gazebo-1] [Msg] Serving full state on [/world/gp7_pick_place/state]
+[gazebo-1] [Msg] Serving full state (async) on [/world/gp7_pick_place/state_async]
+[gazebo-1] [Msg] Publishing scene information on [/world/gp7_pick_place/scene/info]
+[gazebo-1] [Msg] Publishing entity deletions on [/world/gp7_pick_place/scene/deletion]
+[gazebo-1] [Msg] Publishing state changes on [/world/gp7_pick_place/state]
+[gazebo-1] [Msg] Publishing pose messages on [/world/gp7_pick_place/pose/info]
+[gazebo-1] [Msg] Publishing dynamic pose messages on [/world/gp7_pick_place/dynamic_pose/info]
+[pick_place-6] [INFO] [1794916230.058393007] [gp7_pick_place]: URDF IK preflight passed: all Cartesian waypoints keep the tool pointing down.
+[pick_place-6] [INFO] [1794916230.059018121] [gp7_pick_place]: State: PREGRASP
+[gazebo-1] [INFO] [1794916230.062537413] [gripper_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916230.062650957] [gripper_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916233.057476713] [gripper_controller]: Goal reached, success!
+[gazebo-1] [INFO] [1794916233.306351844] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916233.306419882] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916240.300170567] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916240.501893338] [gp7_pick_place]: State: DESCEND
+[gazebo-1] [INFO] [1794916240.509426281] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916240.509478870] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916245.499989345] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916245.702830477] [gp7_pick_place]: State: CLOSE
+[gazebo-1] [INFO] [1794916245.706597645] [gripper_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916245.706640295] [gripper_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916248.701079746] [gripper_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916248.943210427] [gp7_pick_place]: State: VERIFY_GRASP
+[pick_place-6] [INFO] [1794916249.095204326] [gp7_pick_place]: State: LIFT
+[gazebo-1] [INFO] [1794916249.102432747] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916249.102481419] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916255.097791645] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916255.259872867] [gp7_pick_place]: State: TRANSFER
+[gazebo-1] [INFO] [1794916255.267306945] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916255.267402895] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916263.262193338] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916263.425526062] [gp7_pick_place]: State: LOWER
+[gazebo-1] [INFO] [1794916263.432017007] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916263.432085776] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916268.424460912] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916268.595929402] [gp7_pick_place]: State: RELEASE
+[gazebo-1] [INFO] [1794916268.758726901] [gripper_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916268.758807442] [gripper_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916271.754519302] [gripper_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916271.967012601] [gp7_pick_place]: State: VERIFY_PLACE
+[pick_place-6] [INFO] [1794916273.476077913] [gp7_pick_place]: State: RETREAT
+[gazebo-1] [INFO] [1794916273.484781285] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794916273.484836338] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794916278.484491521] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794916279.205882186] [gp7_pick_place]: State: DONE
+[pick_place-6] [INFO] [1794916279.207172079] [gp7_pick_place]: PICK AND PLACE VERIFIED: Box B=[0.5   0.3   0.225], maximum orientation error=0.000 degrees.
+[pick_place-6] [INFO] [1794916279.306570743] [gp7_pick_place]: Runtime evidence saved to /home/hasith/Downloads/Robotics/analysis/audit_video
+[INFO] [pick_place-6]: process has finished cleanly [pid 31909]

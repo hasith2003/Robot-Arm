@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "initial_box_m": [
+    0.35,
+    -0.25,
+    0.02499942003274465
+  ],
+  "target_box_m": [
+    0.5,
+    0.3,
+    0.225
+  ],
+  "final_box_m": [
+    0.5000000000038802,
+    0.29999999997564203,
+    0.22499913369136715
+  ],
+  "final_position_error_m": 8.663086332086521e-07,
+  "post_retreat_drift_m": 0.0,
+  "states": [
+    {
+      "state": "PREGRASP",
+      "wall_s": 4.393005101001108
+    },
+    {
+      "state": "DESCEND",
+      "wall_s": 14.835743061001267
+    },
+    {
+      "state": "CLOSE",
+      "wall_s": 20.03664101600043
+    },
+    {
+      "state": "VERIFY_GRASP",
+      "wall_s": 23.276409106001665
+    },
+    {
+      "state": "LIFT",
+      "wall_s": 23.42900899400047
+    },
+    {
+      "state": "TRANSFER",
+      "wall_s": 29.593617492000703
+    },
+    {
+      "state": "LOWER",
+      "wall_s": 37.75917812300031
+    },
+    {
+      "state": "RELEASE",
+      "wall_s": 42.92983059100152
+    },
+    {
+      "state": "VERIFY_PLACE",
+      "wall_s": 46.30017869900075
+    },
+    {
+      "state": "RETREAT",
+      "wall_s": 47.809902097000304
+    },
+    {
+      "state": "DONE",
+      "wall_s": 53.53973606600084
+    }
+  ],
+  "joint_samples": 5071,
+  "object_samples": 3062,
+  "max_orientation_error_deg": 1.1558280315762966e-08,
+  "max_measured_joint_speed_rad_s": [
+    0.3141031200089686,
+    0.2985224757024727,
+    0.19795820595883706,
+    1.918826007563405e-09,
+    0.3357086512719869,
+    0.31410312000982726
+  ],
+  "min_joint_limit_margin_rad": 1.0300811607211533,
+  "scope": "Accepted reachable scene; Box A XY differs from task sheet; fixed-joint grasp abstraction",
+  "orientation_tolerance_deg": 2.0053522829578814,
+  "placement_tolerance_m": 0.004
+}

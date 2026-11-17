@@ -1,6 +1,10 @@
 """Measured pick/place with URDF IK and an explicitly declared fixed-joint grasp."""
 import threading
 import time
+import csv
+import json
+import os
+from pathlib import Path
 import numpy as np
 import rclpy
 from rclpy.node import Node
@@ -17,6 +21,7 @@ from gz.msgs10.stringmsg_pb2 import StringMsg
 from gz.msgs10.empty_pb2 import Empty
 from gp7_kinematics.urdf_model import URDFModel
 from gp7_task.task_state import PickPlaceStateMachine
+from gp7_task.controller_trajectory import smooth_joint_trajectory
 
 
 class PickPlace(Node):
@@ -34,9 +39,34 @@ class PickPlace(Node):
         self.detach = self.gz.advertise('/box_b/detach', Empty)
         self.machine = PickPlaceStateMachine()
         self.monitor = False; self.orientation_error_max = 0.; self.failure = None
+        self.started = time.monotonic()
+        self.joint_samples = []; self.object_samples = []; self.command_samples = []
+        self.states = []; self.result = {'passed': False}
+        self.measured_speed_max = np.zeros(6)
+        self.position_margin_min = float('inf')
 
     def joint_callback(self, msg):
         self.joints = dict(zip(msg.name,msg.position)); self.joint_time = time.monotonic()
+        if hasattr(self, 'model') and all(n in self.joints for n in self.model.names):
+            velocities = dict(zip(msg.name, msg.velocity))
+            if not all(n in velocities for n in self.model.names):
+                self.failure = 'Joint velocity feedback is missing'
+                return
+            q = np.array([self.joints[n] for n in self.model.names])
+            v = np.array([velocities[n] for n in self.model.names])
+            if not np.all(np.isfinite(np.r_[q, v])):
+                self.failure = 'Joint feedback contains non-finite values'
+                return
+            self.measured_speed_max = np.maximum(self.measured_speed_max, abs(v))
+            margin = float(np.min(np.r_[q-self.model.lower, self.model.upper-q]))
+            self.position_margin_min = min(self.position_margin_min, margin)
+            if margin < -.001:
+                self.failure = 'Measured joint position exceeds URDF limits'
+            if np.any(abs(v) > self.model.speed + .001):
+                self.failure = 'Measured joint speed exceeds URDF limits'
+            stamp = msg.header.stamp.sec + msg.header.stamp.nanosec * 1e-9
+            self.joint_samples.append([time.monotonic()-self.started, stamp,
+                                       self.machine.state.name, *q, *v])
 
     def pose_callback(self, msg):
         with self.lock:
@@ -47,6 +77,8 @@ class PickPlace(Node):
             if self.monitor and 'box_b' in self.poses:
                 angle = np.linalg.norm(Rotation.from_matrix(self.poses['box_b'][1] @ self.box_rotation.T).as_rotvec())
                 self.orientation_error_max = max(self.orientation_error_max, angle)
+                self.object_samples.append([time.monotonic()-self.started,
+                    self.machine.state.name, *self.poses['box_b'][0], angle])
                 if angle > .035:
                     self.failure = f'Box orientation changed by {np.rad2deg(angle):.2f} degrees'
 
@@ -59,6 +91,8 @@ class PickPlace(Node):
         while time.monotonic()<deadline:
             rclpy.spin_once(self, timeout_sec=.05)
             if self.failure: raise RuntimeError(self.failure)
+            if self.monitor:
+                self.object_pose('box_b')  # Fail if transport feedback stops arriving.
 
     def wait(self, future, timeout):
         deadline = time.monotonic()+timeout
@@ -89,14 +123,19 @@ class PickPlace(Node):
         raise RuntimeError(f'Grasp plugin did not confirm {expected}')
 
     def send(self, client, names, points, timeout=40):
+        is_arm = list(names) == self.model.names
+        lower, upper, speed = ((self.model.lower, self.model.upper, self.model.speed)
+                               if is_arm else (np.zeros(2), np.full(2, .025), np.full(2, .05)))
+        times, positions, velocities, accelerations = smooth_joint_trajectory(points, lower, upper, speed)
         goal = FollowJointTrajectory.Goal(); goal.trajectory.joint_names = list(names)
-        for stamp,q in points:
+        segment = len(self.states)
+        for stamp,q,v,a in zip(times, positions, velocities, accelerations):
             p = JointTrajectoryPoint(); p.positions = list(map(float,q))
+            p.velocities = list(map(float, v)); p.accelerations = list(map(float, a))
             ns = int(round(stamp*1e9)); p.time_from_start.sec=ns//10**9; p.time_from_start.nanosec=ns%10**9
             goal.trajectory.points.append(p)
-        # Position-only dense waypoints are linearly interpolated; explicitly
-        # stop at the final waypoint for the controller's velocity tolerance.
-        goal.trajectory.points[-1].velocities = [0.]*len(names)
+            if is_arm:
+                self.command_samples.append([segment, self.machine.state.name, stamp, *q, *v, *a])
         handle = self.wait(client.send_goal_async(goal), 10)
         if not handle.accepted: raise RuntimeError('Trajectory rejected')
         try:
@@ -120,6 +159,7 @@ class PickPlace(Node):
 
     def advance(self, condition):
         self.machine.advance(condition)
+        self.states.append({'state': self.machine.state.name, 'wall_s': time.monotonic()-self.started})
         self.get_logger().info(f'State: {self.machine.state.name}')
 
     def move(self, points):
@@ -139,6 +179,8 @@ class PickPlace(Node):
         self.switch_grasp(False)
         self.spin(.3)
         self.pick,self.box_rotation = self.object_pose('box_b')
+        # Include approach, descent and closing, not just the attached phase.
+        self.monitor = True
         a,_ = self.object_pose('box_a')
         base,_ = self.object_pose('gp7')
         if np.linalg.norm(base)>.001: raise RuntimeError('Robot model must be spawned at world origin')
@@ -160,6 +202,7 @@ class PickPlace(Node):
         segments=[]; seed=pre_q
         for start,end,seconds in [(pre,self.pick,5),(self.pick,lift,6),(lift,above,8),(above,release,5),(release,above,5)]:
             path=self.model.cartesian(start,end,down,seed,seconds)
+            smooth_joint_trajectory(path, self.model.lower, self.model.upper, self.model.speed)
             segments.append(path); seed=path[-1][1]
         self.get_logger().info('URDF IK preflight passed: all Cartesian waypoints keep the tool pointing down.')
         self.advance('motion_complete')
@@ -189,13 +232,56 @@ class PickPlace(Node):
         if np.linalg.norm(settled-self.place)>.004 or np.linalg.norm(settled-placed)>.001:
             raise RuntimeError(f'Placement verification failed: actual={settled}, target={self.place}')
         self.advance('object_stable_on_target')
-        self.move(segments[4]); self.advance('motion_complete')
+        self.move(segments[4])
+        # Retreat must not disturb a placement that was stable before it.
+        placed, _ = self.object_pose('box_b')
+        self.spin(.5)
+        settled, _ = self.object_pose('box_b')
+        if np.linalg.norm(settled-self.place)>.004 or np.linalg.norm(settled-placed)>.001:
+            raise RuntimeError(f'Post-retreat placement verification failed: actual={settled}, target={self.place}')
+        self.advance('motion_complete')
         self.get_logger().info(f'PICK AND PLACE VERIFIED: Box B={settled.round(5)}, maximum orientation error={np.rad2deg(self.orientation_error_max):.3f} degrees.')
+        self.result.update(passed=True, initial_box_m=self.pick.tolist(),
+            target_box_m=self.place.tolist(), final_box_m=settled.tolist(),
+            final_position_error_m=float(np.linalg.norm(settled-self.place)),
+            post_retreat_drift_m=float(np.linalg.norm(settled-placed)))
+
+    def save_evidence(self):
+        destination = os.environ.get('GP7_EVIDENCE_DIR')
+        if not destination:
+            return
+        path = Path(destination); path.mkdir(parents=True, exist_ok=True)
+        names = self.model.names if hasattr(self, 'model') else []
+        def write_csv(filename, header, rows):
+            with (path / filename).open('w', newline='') as stream:
+                writer = csv.writer(stream); writer.writerow(header); writer.writerows(rows)
+        write_csv('measured_joints.csv', ['wall_s', 'sim_s', 'state'] +
+            [n+'_rad' for n in names] + [n+'_rad_s' for n in names], self.joint_samples)
+        with self.lock:
+            write_csv('measured_object.csv', ['wall_s', 'state', 'x_m', 'y_m', 'z_m', 'orientation_error_rad'], self.object_samples)
+        write_csv('commanded_joints.csv', ['segment', 'state', 'segment_s'] +
+            [n+'_rad' for n in names] + [n+'_rad_s' for n in names] +
+            [n+'_rad_s2' for n in names], self.command_samples)
+        self.result.update(states=self.states, joint_samples=len(self.joint_samples),
+            object_samples=len(self.object_samples),
+            max_orientation_error_deg=float(np.rad2deg(self.orientation_error_max)),
+            max_measured_joint_speed_rad_s=self.measured_speed_max.tolist(),
+            min_joint_limit_margin_rad=(self.position_margin_min if np.isfinite(self.position_margin_min) else None),
+            scope='Accepted reachable scene; Box A XY differs from task sheet; fixed-joint grasp abstraction',
+            orientation_tolerance_deg=float(np.rad2deg(.035)), placement_tolerance_m=.004)
+        (path / 'result.json').write_text(json.dumps(self.result, indent=2) + '\n')
+        self.get_logger().info(f'Runtime evidence saved to {path}')
 
 
 def main():
     rclpy.init(); node=PickPlace()
     try:
         node.run()
+    except Exception as error:
+        node.result['error'] = str(error)
+        raise
     finally:
-        node.destroy_node(); rclpy.shutdown()
+        try:
+            node.save_evidence()
+        finally:
+            node.destroy_node(); rclpy.shutdown()
