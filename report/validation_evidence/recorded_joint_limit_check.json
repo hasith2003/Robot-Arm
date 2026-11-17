@@ -1,0 +1,48 @@
+{
+  "source": "analysis/audit_video/measured_joints.csv",
+  "source_sha256": "e85a2d7132515b17ed61bcf6cdbc4a4f4195f0487a0f7c488e3e4e45721dd63d",
+  "samples": 5071,
+  "names": [
+    "joint_s",
+    "joint_l",
+    "joint_u",
+    "joint_r",
+    "joint_b",
+    "joint_t"
+  ],
+  "lower_deg": [
+    -170.0,
+    -65.0,
+    -70.0,
+    -190.0,
+    -135.0,
+    -360.0
+  ],
+  "upper_deg": [
+    170.0,
+    145.0,
+    190.0,
+    190.0,
+    135.0,
+    360.0
+  ],
+  "recorded_min_deg": [
+    -35.53767779197934,
+    -5.98069693474089,
+    -42.99976585913711,
+    -9.176669752076326e-09,
+    -65.10340132894122,
+    -30.96375653208333
+  ],
+  "recorded_max_deg": [
+    30.96375653208271,
+    44.50937066220969,
+    -3.9125404321016157e-11,
+    9.821230036657814e-10,
+    -3.2553895584992527e-11,
+    35.53767779198681
+  ],
+  "minimum_limit_margin_rad": 0.47124298456743974,
+  "all_recorded_positions_within_corrected_bounds": true,
+  "all_recorded_speeds_within_bounds": true
+}

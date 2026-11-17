@@ -1,0 +1,226 @@
+[INFO] [launch]: All log files can be found below /tmp/gp7-final-limits-ros/2026-11-17-20-13-11-751279-hasith-Vivobook-ASUSLaptop-M3500QC-M3500QC-44811
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [44815]
+[INFO] [parameter_bridge-2]: process started with pid [44816]
+[INFO] [robot_state_publisher-3]: process started with pid [44817]
+[INFO] [create-4]: process started with pid [44819]
+[robot_state_publisher-3] [INFO] [1794926592.278917665] [robot_state_publisher]: Robot initialized
+[create-4] [INFO] [1794926592.286546952] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-2] [INFO] [1794926592.304833554] [ros_gz_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1794926592.306110788] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/box_b/attach (std_msgs/msg/Empty) -> /box_b/attach (gz.msgs.Empty)] (Lazy 0)
+[parameter_bridge-2] [INFO] [1794926592.307322119] [ros_gz_bridge]: Creating ROS->GZ Bridge: [/box_b/detach (std_msgs/msg/Empty) -> /box_b/detach (gz.msgs.Empty)] (Lazy 0)
+[gazebo-1] [Msg] Gazebo Sim Server v8.15.0
+[gazebo-1] [Msg] Loading SDF world file[/home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/worlds/pick_place.sdf].
+[gazebo-1] [Msg] Serving entity system service on [/entity/system/add]
+[gazebo-1] [Msg] Create service on [/world/gp7_pick_place/create_multiple] (async)
+[gazebo-1] [Msg] Create service on [/world/gp7_pick_place/create_multiple/blocking] (blocking)
+[gazebo-1] [Msg] Remove service on [/world/gp7_pick_place/remove] (async)
+[gazebo-1] [Msg] Remove service on [/world/gp7_pick_place/remove/blocking] (blocking)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose] (async)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose/blocking] (blocking)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose_vector] (async)
+[gazebo-1] [Msg] Pose service on [/world/gp7_pick_place/set_pose_vector/blocking] (blocking)
+[gazebo-1] [Msg] Light configuration service on [/world/gp7_pick_place/light_config] (async)
+[gazebo-1] [Msg] Light configuration service on [/world/gp7_pick_place/light_config/blocking] (blocking)
+[gazebo-1] [Msg] Physics service on [/world/gp7_pick_place/set_physics] (async)
+[gazebo-1] [Msg] Physics service on [/world/gp7_pick_place/set_physics/blocking] (blocking)
+[gazebo-1] [Msg] SphericalCoordinates service on [/world/gp7_pick_place/set_spherical_coordinates] (async)
+[gazebo-1] [Msg] SphericalCoordinates service on [/world/gp7_pick_place/set_spherical_coordinates/blocking] (blocking)
+[gazebo-1] [Msg] Enable collision service on [/world/gp7_pick_place/enable_collision] (async)
+[gazebo-1] [Msg] Enable collision service on [/world/gp7_pick_place/enable_collision/blocking] (blocking)
+[gazebo-1] [Msg] Disable collision service on [/world/gp7_pick_place/disable_collision] (async)
+[gazebo-1] [Msg] Disable collision service on [/world/gp7_pick_place/disable_collision/blocking] (blocking)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/visual_config] (async)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/visual_config/blocking] (blocking)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/wheel_slip] (async)
+[gazebo-1] [Msg] Material service on [/world/gp7_pick_place/wheel_slip/blocking] (blocking)
+[gazebo-1] [Msg] Loaded level [default]
+[gazebo-1] [Msg] Serving world controls on [/world/gp7_pick_place/control], [/world/gp7_pick_place/control/state] and [/world/gp7_pick_place/playback/control]
+[gazebo-1] [Msg] Serving GUI information on [/world/gp7_pick_place/gui/info]
+[create-4] [INFO] [1794926592.769769202] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-4]: process has finished cleanly [pid 44819]
+[INFO] [spawner-5]: process started with pid [44881]
+[spawner-5] [INFO] [1794926593.305033916] [spawner_joint_state_broadcaster]: waiting for service /controller_manager/list_controllers to become available...
+[gazebo-1] [INFO] [1794926594.552608304] [gz_ros_control]: [gz_ros2_control] Fixed joint ['world_to_base'] (Entity='51') is skipped.
+[gazebo-1] [INFO] [1794926594.552702299] [gz_ros_control]: [gz_ros2_control] Fixed joint ['tool_fixed_joint'] (Entity='58') is skipped.
+[gazebo-1] [INFO] [1794926594.553712757] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1794926594.563321234] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1794926594.563345369] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1794926594.568800106] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1794926594.568836724] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [INFO] [1794926594.734645095] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1794926594.734746042] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1794926594.739814963] [gz_ros_control]: The position_proportional_gain has been set to: 0.5
+[gazebo-1] [INFO] [1794926594.739867190] [gz_ros_control]: Loading joint: joint_s
+[gazebo-1] [INFO] [1794926594.739876026] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.739882799] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.739888008] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.739898337] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.739902826] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.739916712] [gz_ros_control]: Loading joint: joint_l
+[gazebo-1] [INFO] [1794926594.739921591] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.739925809] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.739930738] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.739935056] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.739939244] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.739949082] [gz_ros_control]: Loading joint: joint_u
+[gazebo-1] [INFO] [1794926594.739953600] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.739957748] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.739962437] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.739966574] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.739970712] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.739983315] [gz_ros_control]: Loading joint: joint_r
+[gazebo-1] [INFO] [1794926594.739990469] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.739997842] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740005547] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.740012940] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.740020264] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740034420] [gz_ros_control]: Loading joint: joint_b
+[gazebo-1] [INFO] [1794926594.740042235] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.740049649] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740058415] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.740065999] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.740073313] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740089613] [gz_ros_control]: Loading joint: joint_t
+[gazebo-1] [INFO] [1794926594.740097758] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.740105202] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740112485] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.740119769] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.740126822] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740143453] [gz_ros_control]: Loading joint: left_finger_joint
+[gazebo-1] [INFO] [1794926594.740152119] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.740159793] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740167528] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.740174992] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.740182205] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740198024] [gz_ros_control]: Loading joint: right_finger_joint
+[gazebo-1] [INFO] [1794926594.740205959] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794926594.740213223] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740220596] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794926594.740233591] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794926594.740247557] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794926594.740485058] [controller_manager]: Initialize hardware 'GP7GazeboSystem' 
+[gazebo-1] [WARN] [1794926594.740579744] [controller_manager.hardware_component.system.GP7GazeboSystem]: Executor is not available during hardware component initialization for 'GP7GazeboSystem'. Skipping node creation!
+[gazebo-1] [INFO] [1794926594.740693205] [controller_manager]: Successful initialization of hardware 'GP7GazeboSystem'
+[gazebo-1] [INFO] [1794926594.740953258] [controller_manager]: Activating component 'GP7GazeboSystem'.
+[gazebo-1] [INFO] [1794926594.740981360] [resource_manager]: 'configure' hardware 'GP7GazeboSystem' 
+[gazebo-1] [INFO] [1794926594.740991649] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1794926594.741001287] [resource_manager]: Successful 'configure' of hardware 'GP7GazeboSystem'
+[gazebo-1] [INFO] [1794926594.741032666] [resource_manager]: 'activate' hardware 'GP7GazeboSystem' 
+[gazebo-1] [INFO] [1794926594.741058614] [resource_manager]: Successful 'activate' of hardware 'GP7GazeboSystem'
+[gazebo-1] [WARN] [1794926594.741164461] [controller_manager]: Component 'GP7GazeboSystem' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1794926594.741186101] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gazebo-1] [INFO] [1794926594.807780535] [controller_manager]: Loading controller : 'joint_state_broadcaster' of type 'joint_state_broadcaster/JointStateBroadcaster'
+[gazebo-1] [INFO] [1794926594.807831008] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1794926594.811928934] [controller_manager]: Controller 'joint_state_broadcaster' node arguments: --ros-args --params-file /home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/config/gp7_controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-5] [INFO] [1794926594.820053213] [spawner_joint_state_broadcaster]: Loaded joint_state_broadcaster
+[gazebo-1] [INFO] [1794926594.820800752] [controller_manager]: Configuring controller: 'joint_state_broadcaster'
+[gazebo-1] [INFO] [1794926594.820966981] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[gazebo-1] [INFO] [1794926594.835381991] [controller_manager]: Loading controller : 'arm_controller' of type 'joint_trajectory_controller/JointTrajectoryController'
+[gazebo-1] [INFO] [1794926594.835428277] [controller_manager]: Loading controller 'arm_controller'
+[gazebo-1] [INFO] [1794926594.841089919] [controller_manager]: Controller 'arm_controller' node arguments: --ros-args --params-file /home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/config/gp7_controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-5] [INFO] [1794926594.853670540] [spawner_joint_state_broadcaster]: Loaded arm_controller
+[gazebo-1] [INFO] [1794926594.853983031] [controller_manager]: Configuring controller: 'arm_controller'
+[gazebo-1] [INFO] [1794926594.854268972] [arm_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gazebo-1] [INFO] [1794926594.854321369] [arm_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gazebo-1] [INFO] [1794926594.854364129] [arm_controller]: Using 'splines' interpolation method.
+[gazebo-1] [INFO] [1794926594.857056342] [arm_controller]: Action status changes will be monitored at 20.00 Hz.
+[gazebo-1] [INFO] [1794926594.863687717] [arm_controller]: Setting initial scaling factor to 1.000000
+[gazebo-1] [INFO] [1794926594.863704518] [arm_controller]: No scaling interface set. This controller will not read speed scaling from the hardware.
+[gazebo-1] [INFO] [1794926594.864481442] [controller_manager]: Loading controller : 'gripper_controller' of type 'joint_trajectory_controller/JointTrajectoryController'
+[gazebo-1] [INFO] [1794926594.864497231] [controller_manager]: Loading controller 'gripper_controller'
+[gazebo-1] [INFO] [1794926594.864656597] [controller_manager]: Controller 'gripper_controller' node arguments: --ros-args --params-file /home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/config/gp7_controllers.yaml -p use_sim_time:=true --param use_sim_time:=true 
+[spawner-5] [INFO] [1794926594.877116113] [spawner_joint_state_broadcaster]: Loaded gripper_controller
+[gazebo-1] [INFO] [1794926594.877267444] [controller_manager]: Configuring controller: 'gripper_controller'
+[gazebo-1] [INFO] [1794926594.877355257] [gripper_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[gazebo-1] [INFO] [1794926594.877371407] [gripper_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[gazebo-1] [INFO] [1794926594.877395212] [gripper_controller]: Using 'splines' interpolation method.
+[gazebo-1] [INFO] [1794926594.878179058] [gripper_controller]: Action status changes will be monitored at 20.00 Hz.
+[gazebo-1] [INFO] [1794926594.880306232] [gripper_controller]: Setting initial scaling factor to 1.000000
+[gazebo-1] [INFO] [1794926594.880318034] [gripper_controller]: No scaling interface set. This controller will not read speed scaling from the hardware.
+[gazebo-1] [INFO] [1794926594.881397079] [controller_manager]: Activating controllers: [ joint_state_broadcaster arm_controller gripper_controller ]
+[gazebo-1] [WARN] [1794926596.587981438] [gz_ros_control]:  Desired controller update period (0.01 s) is slower than the gazebo simulation period (0.001 s).
+[gazebo-1] [INFO] [1794926596.596277747] [controller_manager]: Successfully switched controllers!
+[spawner-5] [INFO] [1794926596.607227789] [spawner_joint_state_broadcaster]: Configured and activated all the parsed controllers list : ['joint_state_broadcaster', 'arm_controller', 'gripper_controller']!
+[INFO] [spawner-5]: process has finished cleanly [pid 44881]
+[INFO] [pick_place-6]: process started with pid [44938]
+[pick_place-6] [INFO] [1794926599.329599461] [gp7_pick_place]: Planning pick=[ 0.35       -0.25        0.02499942], place=[0.5   0.3   0.225], pregrasp joints=[-6.20249486e-01  2.65077970e-01 -7.28765287e-01  4.65023239e-18
+[pick_place-6]  -5.76953070e-01  6.20249486e-01]
+[gazebo-1] [Msg] World [gp7_pick_place] initialized with [physics] physics profile.
+[gazebo-1] [Msg] Serving world SDF generation service on [/world/gp7_pick_place/generate_world_sdf]
+[gazebo-1] [Msg] Serving world names on [/gazebo/worlds]
+[gazebo-1] [Msg] Resource path add service on [/gazebo/resource_paths/add].
+[gazebo-1] [Msg] Resource path get service on [/gazebo/resource_paths/get].
+[gazebo-1] [Msg] Resource path resolve service on [/gazebo/resource_paths/resolve].
+[gazebo-1] [Msg] Resource paths published on [/gazebo/resource_paths].
+[gazebo-1] [Msg] Server control service on [/server_control].
+[gazebo-1] [Msg] Found no publishers on /stats, adding root stats topic
+[gazebo-1] [Msg] Found no publishers on /clock, adding root clock topic
+[gazebo-1] [Msg] Serving scene information on [/world/gp7_pick_place/scene/info]
+[gazebo-1] [Msg] Serving graph information on [/world/gp7_pick_place/scene/graph]
+[gazebo-1] [Msg] Serving full state on [/world/gp7_pick_place/state]
+[gazebo-1] [Msg] Serving full state (async) on [/world/gp7_pick_place/state_async]
+[gazebo-1] [Msg] Publishing scene information on [/world/gp7_pick_place/scene/info]
+[gazebo-1] [Msg] Publishing entity deletions on [/world/gp7_pick_place/scene/deletion]
+[gazebo-1] [Msg] Publishing state changes on [/world/gp7_pick_place/state]
+[gazebo-1] [Msg] Publishing pose messages on [/world/gp7_pick_place/pose/info]
+[gazebo-1] [Msg] Publishing dynamic pose messages on [/world/gp7_pick_place/dynamic_pose/info]
+[pick_place-6] [INFO] [1794926601.103285544] [gp7_pick_place]: URDF IK preflight passed: all Cartesian waypoints keep the tool pointing down.
+[pick_place-6] [INFO] [1794926601.103730311] [gp7_pick_place]: State: PREGRASP
+[gazebo-1] [INFO] [1794926601.106271795] [gripper_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926601.106336786] [gripper_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926604.105839262] [gripper_controller]: Goal reached, success!
+[gazebo-1] [INFO] [1794926604.320340351] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926604.320384864] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926611.315826528] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926611.516593024] [gp7_pick_place]: State: DESCEND
+[gazebo-1] [INFO] [1794926611.520222985] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926611.520260374] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926616.518862807] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926616.679863658] [gp7_pick_place]: State: CLOSE
+[gazebo-1] [INFO] [1794926616.682580672] [gripper_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926616.682629342] [gripper_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926619.678785335] [gripper_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926619.929568545] [gp7_pick_place]: State: VERIFY_GRASP
+[pick_place-6] [INFO] [1794926620.089553165] [gp7_pick_place]: State: LIFT
+[gazebo-1] [INFO] [1794926620.093385474] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926620.093424898] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926626.088735602] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926626.249531985] [gp7_pick_place]: State: TRANSFER
+[gazebo-1] [INFO] [1794926626.253065560] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926626.253093923] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926634.248710739] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926634.429593085] [gp7_pick_place]: State: LOWER
+[gazebo-1] [INFO] [1794926634.433202554] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926634.433229033] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926639.428733299] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926639.589905371] [gp7_pick_place]: State: RELEASE
+[gazebo-1] [INFO] [1794926639.751802312] [gripper_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926639.751848108] [gripper_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926642.748728475] [gripper_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926642.999572226] [gp7_pick_place]: State: VERIFY_PLACE
+[pick_place-6] [INFO] [1794926644.509897836] [gp7_pick_place]: State: RETREAT
+[gazebo-1] [INFO] [1794926644.514508922] [arm_controller]: Received new action goal
+[gazebo-1] [INFO] [1794926644.514548926] [arm_controller]: Accepted new action goal
+[gazebo-1] [INFO] [1794926649.508944377] [arm_controller]: Goal reached, success!
+[pick_place-6] [INFO] [1794926650.221494694] [gp7_pick_place]: State: DONE
+[pick_place-6] [INFO] [1794926650.224872154] [gp7_pick_place]: PICK AND PLACE VERIFIED: Box B=[0.5   0.3   0.225], maximum orientation error=0.000 degrees.
+[pick_place-6] [INFO] [1794926650.309098737] [gp7_pick_place]: Runtime evidence saved to /home/hasith/Downloads/Robotics/analysis/gp7_corrected_limits_run
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [pick_place-6]: sending signal 'SIGINT' to process[pick_place-6]
+[INFO] [robot_state_publisher-3]: sending signal 'SIGINT' to process[robot_state_publisher-3]
+[INFO] [parameter_bridge-2]: sending signal 'SIGINT' to process[parameter_bridge-2]
+[INFO] [gazebo-1]: sending signal 'SIGINT' to process[gazebo-1]
+[parameter_bridge-2] [INFO] [1794926650.414235232] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-3] [INFO] [1794926650.414232737] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[robot_state_publisher-3] [INFO] [1794926650.417137587] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[parameter_bridge-2] [INFO] [1794926650.417599027] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+[ERROR] [pick_place-6]: process has died [pid 44938, exit code -2, cmd '/home/hasith/Downloads/Robotics/gp7_ws/install/gp7_task/lib/gp7_task/pick_place --ros-args'].
+[INFO] [launch.user]: ERROR: Pick-and-place failed; stopping simulation. See task error above.
+[gazebo-1] [INFO] [1794926650.447057189] [controller_manager.pal_statistics]: Async messages lost 0
+[gazebo-1] [INFO] [1794926650.447105469] [controller_manager.pal_statistics]: publish_async_failures_ 0
+[gazebo-1] [INFO] [1794926650.448498724] [controller_manager.pal_statistics]: Async messages lost 0
+[gazebo-1] [INFO] [1794926650.448516898] [controller_manager.pal_statistics]: publish_async_failures_ 0
+[INFO] [parameter_bridge-2]: process has finished cleanly [pid 44816]
+[INFO] [robot_state_publisher-3]: process has finished cleanly [pid 44817]
+[ERROR] [gazebo-1]: process has died [pid 44815, exit code -2, cmd 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim -s -r -v 3 /home/hasith/Downloads/Robotics/gp7_ws/install/gp7_simulation/share/gp7_simulation/worlds/pick_place.sdf --force-version 8'].

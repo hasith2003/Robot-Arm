@@ -148,7 +148,10 @@
 			<child link="${prefix}link_u"/>
 			<origin xyz="0 0 0.445" />
 			<axis xyz="0 -1 0" />
-			<limit lower="${-116 * pi / 180}" upper="${255 * pi / 180}" effort="${effort_u}" velocity="${410 * pi / 180}" />
+			<!-- General GP7: manufacturer table 5-2 and ROS-Industrial GP7 use
+			     the same relative-joint coordinate and -70/+190 degree limits.
+			     The earlier imported -116/+255 values are not this GP7 range. -->
+			<limit lower="${-70 * pi / 180}" upper="${190 * pi / 180}" effort="${effort_u}" velocity="${410 * pi / 180}" />
 		</joint>
 		<joint name="${prefix}joint_r" type="revolute">
 			<parent link="${prefix}link_u"/>

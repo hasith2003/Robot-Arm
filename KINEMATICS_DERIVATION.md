@@ -162,8 +162,15 @@ by default. A failed local solve does not prove a pose is unreachable; use
 a suitable seed or another branch. Multiple valid joint solutions can produce
 the same TCP pose. IK does not check collisions or trajectory speed.
 
-URDF limits in degrees are S [-170,170], L [-65,145], U [-116,255],
+URDF limits in degrees are S [-170,170], L [-65,145], U [-70,190],
 R [-190,190], B [-135,135], T [-360,360].
+
+The U limits were corrected to the general GP7 specification after comparing
+the positive axes and zero-angle coordinates against the ROS-Industrial GP7
+description. The two descriptions use the same joint variables; differences
+in joint-frame origin points lie along the same joint axes and do not create
+a joint-angle offset. See `analysis/gp7_joint_limit_mapping.json`. The previous
+imported U bounds of [-116,255] were not retained as the general GP7 limits.
 
 ## 7. Validate against an independent model
 

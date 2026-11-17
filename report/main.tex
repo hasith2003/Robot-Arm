@@ -20,11 +20,10 @@
 \large Kinematics and Control of a Simulated GP7\\
 \normalsize Upright Pick-and-Place with a Simplified Parallel Gripper}
 \author{\small\begin{tabular}{ll}
-Member 1 & \textbf{[INDEX NUMBER 1]}\\
-Member 2 & \textbf{[INDEX NUMBER 2]}\\
-Member 3 & \textbf{[INDEX NUMBER 3]}
-\end{tabular}\\
-\small Replace the placeholders; remove unused entries.}
+N.A.H.G. Nettikumara & \textbf{230436X}\\
+K.PCP. Keerawella & \textbf{230332B}\\
+J.U.P. Lelwala & \textbf{230374E}
+\end{tabular}}
 \date{Validation: 17 November 2026}
 
 \begin{document}
@@ -35,7 +34,8 @@ Member 3 & \textbf{[INDEX NUMBER 3]}
 A six-degree-of-freedom Yaskawa GP7 was simulated in Gazebo Harmonic using
 ROS~2 Jazzy. The objective was to pick a cube from the ground and place it at
 the centre of a raised box while preserving its orientation. Robot geometry
-and joint axes were obtained from the imported GP7 URDF~\cite{urdf}; the
+and joint axes were obtained from the Apache-2.0 \texttt{yaskawa\_gp7\_support}
+URDF and meshes by fizyr/Maarten de Vries; the
 model was extended with a simplified two-jaw gripper and a grasp tool centre
 point (TCP). Dimensions were extracted from the URDF rather than independently
 measured from SolidWorks.
@@ -62,7 +62,7 @@ this is a documented deviation, not literal compliance with the original
 destination. The robot dimensions and base position were not changed.
 
 \section{Coordinate frame assignment and D--H parameters}
-Standard Denavit--Hartenberg (D--H) convention is used~\cite{lectures}. Frame $i$ is rigidly
+Standard Denavit--Hartenberg (D--H) convention is used. Frame $i$ is rigidly
 attached to link $i$, and joint $i$ rotates about $z_{i-1}$. Thus $z_0$ is the
 joint-1 axis, $z_1$ is the joint-2 axis, and so on through $z_5$ for joint 6.
 The $x_i$ axis follows a common normal between adjacent joint axes, and
@@ -102,8 +102,42 @@ with FK-calculated D--H origins and positive joint-axis directions.
 (a) Zero configuration with the base, shoulder and arm dimensions.
 (b) Recorded retreat posture, viewed in its radial plane. Yellow dots mark
 origins; blue arrows and dots/crosses identify joint z axes. The coordinate
-table defines each complete triad. The flange and TCP are distinct.}
+table defines each complete triad. Purple marks the terminal z6 axis, opposite
+the orange TCP approach axis. The flange and TCP are distinct.}
 \end{figure}
+
+For panel (b), the recorded joint angles in S--L--U--R--B--T order are
+\[
+\q_b\approx(30.9638,16.6019,-8.2947,0,-65.1034,-30.9638)^T\text{ degrees}.
+\]
+The rendering uses the full-precision values in
+\texttt{validation\_evidence/figure\_pose.json}; the base yaw is removed only
+from the viewing direction. Panel (a)'s world axes are $+X$ right, $+Z$ up,
+and $+Y$ into the page. Its separate shoulder and elbow offsets are both
+40~mm. The zero-pose coordinate table does not describe panel (b)'s rotated
+axis directions.
+
+\begin{figure}[htbp]
+\centering\includegraphics[width=\linewidth]{figures/gp7_frame_triads.pdf}
+\caption{Enlarged full coordinate triads at zero joint angles, supplementing
+the actual-robot views. Every triad is anchored on an enlarged crop of the
+actual robot mesh. Red, green and blue denote x, y and z respectively. All
+panels use the same side view: crosses point into the page and dots out.
+Frames 4 and 5 are shown separately at their shared physical origin. The
+origins and D--H table are unchanged.}
+\end{figure}
+
+For each standard D--H frame, the line of $x_i$ is perpendicular to
+$z_{i-1}$ and intersects its line; it is also perpendicular to $z_i$.
+These conditions concern infinite axis lines, so an intersection can lie
+behind the positive arrow. The right-hand rule is enforced by
+$x_i\times y_i=z_i$. A numerical check at 1,004 configurations (including
+zero, the recorded posture, joint bounds and 1,000 random configurations)
+verified these constraints, right-handed orthonormal rotations and agreement
+with the URDF joint axes and TCP. All maximum errors were below $10^{-12}$;
+the largest axis-line intersection residual was $4.13\times10^{-16}$~m.
+The results are retained in
+\path{validation_evidence/frame_annotation_checks.json}.
 
 \begin{center}
 \begin{tabular}{clrrrr}
@@ -217,8 +251,8 @@ that a target is unreachable.
 
 The joint bounds in degrees are
 \[
-\q_{\min}=(-170,-65,-116,-190,-135,-360)^T,\quad
-\q_{\max}=(170,145,255,190,135,360)^T.
+\q_{\min}=(-170,-65,-70,-190,-135,-360)^T,\quad
+\q_{\max}=(170,145,190,190,135,360)^T.
 \]
 For the pregrasp target $\p_d=(.35,-.25,.225)^T$~m with
 $\R_d=\operatorname{diag}(1,-1,-1)$, one numerical solution is
@@ -226,6 +260,15 @@ $\R_d=\operatorname{diag}(1,-1,-1)$, one numerical solution is
 \q\approx(-35.5377,15.1878,-41.7552,0,-33.0571,35.5377)^T\text{ degrees}.
 \]
 Substitution into the D--H FK reproduces the desired position and orientation.
+
+The U-axis limit is $[-70^\circ,190^\circ]$, as listed for the standard GP7
+in the supplied manufacturer's instructions, Table 5-2. Its coordinate was
+checked against the ROS-Industrial GP7 description: positive axes and joint
+zeros agree, and different origin points lie on the same rotation axes.
+No angle offset or sign change is required. The imported wider U bounds were
+corrected in both the URDF and the D--H solver. The recorded U coordinate
+ranges from approximately $-43.000^\circ$ to $0^\circ$, within the corrected
+range. This is model-coordinate verification, not physical controller calibration.
 
 \textbf{IK code excerpt} (live-URDF solver, compactly formatted):
 \begin{lstlisting}
@@ -286,8 +329,12 @@ automatically guaranteed by joint interpolation. For the nominal carried
 segments, offline checks at 321 points per segment verified position errors
 below 0.1~mm and orientation errors below 0.001~rad; this sampled check is not
 a proof for every intermediate instant or arbitrary trajectory.
+The 1,605 underlying samples and per-segment maxima are supplied as
+\texttt{validation\_evidence/interpolation\_samples.csv} and
+\texttt{interpolation\_results.json}; the test outcome is recorded in
+\texttt{pytest.txt} in the same evidence directory.
 The command supplies positions, velocities and
-accelerations to ROS~2's joint trajectory controller~\cite{jtc} so its
+accelerations to ROS~2's joint trajectory controller so its
 interpolation reproduces the cubic intervals. Velocity and acceleration are
 continuous within each segment; acceleration continuity across separate
 segments and holds is not claimed. In particular, the clamped cubic does not
@@ -317,7 +364,7 @@ for stamp, q, v, a in zip(times, positions, velocities, accelerations):
 The controller uses \emph{position} command interfaces with measured position
 and velocity feedback. Gazebo's \texttt{gz\_ros2\_control} integration supplies
 built-in position-error-to-velocity tracking with configured gain 0.5, a
-100~Hz ROS controller rate and a 1~ms physics step~\cite{control}. This is not
+100~Hz ROS controller rate and a 1~ms physics step. This is not
 a custom velocity PID. The supplied velocity/acceleration fields define the
 interpolated position trajectory; they are not separate hardware velocity
 commands. Runtime monitoring checks measured speeds and joint positions.
@@ -379,7 +426,7 @@ Maximum orientation change & $1.156\times10^{-8}$ degrees\\
 Post-retreat drift over checked interval & 0 m\\
 Maximum measured joint speed & 0.336 rad/s ($19.2^\circ$/s)\\
 Maximum measured speed / its joint limit & 5.43\%\\
-Minimum measured joint-position margin & 1.030 rad\\
+Minimum joint-position margin (corrected bounds) & 0.471 rad\\
 Task completion time from node start & Approximately 53.54 s\\
 \bottomrule
 \end{tabular}
@@ -387,6 +434,14 @@ Task completion time from node start & Approximately 53.54 s\\
 These very small errors describe this idealized numerical simulation and
 should not be interpreted as physical robot accuracy. The recorded animation
 starts during the initial approach; camera/layout changes are visible.
+The minimum joint margin was recomputed from all 5,071 recorded samples using
+the corrected standard-GP7 bounds; its audit is included in
+\texttt{recorded\_joint\_limit\_check.json} in the evidence directory.
+
+A fresh isolated Gazebo run with the corrected U limits also reached DONE
+and placed the cube at the same target. Its outcome and log
+are included as \path{corrected_limits_run.json} and
+\path{corrected_limits_simulation.log} in the evidence directory.
 
 \begin{figure}[htbp]
 \centering\includegraphics[width=.65\linewidth]{figures/final.png}
@@ -400,40 +455,26 @@ overshoot/speed checks and state-machine guards. These tests and runs validate
 the selected scene; arbitrary targets, global collision avoidance and physical
 dynamics are outside the demonstrated scope.
 
-\newpage
-\begin{figure}[htbp]
-\centering\includegraphics[width=\linewidth]{figures/results.pdf}
-\caption{Measured joint velocities, object orientation change, horizontal
-transport path and cube height from the recorded simulation run.}
-\end{figure}
-
 \clearpage
-\section{Conclusion and submission artifacts}
+\begin{center}
+\begin{minipage}{\linewidth}
+\centering\includegraphics[width=\linewidth]{figures/results.pdf}
+\captionof{figure}{Measured joint velocities, object orientation change, horizontal
+transport path and cube height from the recorded simulation run.}
+\end{minipage}
+\end{center}
+
+\section{Conclusion}
 The six-axis simulated GP7 picks and places the cube at the selected reachable
 destination while preserving its measured orientation and remaining within
-joint limits. The report provides a consistent frame assignment, D--H table,
+the standard-GP7 joint limits configured in the URDF. The report provides a consistent frame assignment, D--H table,
 FK matrices, numerical IK equations and actual planning/control excerpts.
-The destination deviation and idealized grasp must be retained when describing
-the results.
+The demonstrated scope is the selected reachable layout with an idealized
+grasp and approximate simulation dynamics.
 
-Submit this report after replacing the member-index placeholders, together
-with the recorded simulation video \texttt{gp7\_verified\_demo\_720p.mp4}.
-The project includes measured CSVs, plots, logs and \texttt{result.json}.
-If the optional code repository is submitted, add its actual URL here:
-\textbf{[OPTIONAL REPOSITORY URL]}.
+The accompanying simulation video is \texttt{gp7\_verified\_demo\_720p.mp4}.
+Measured trajectories, interpolation samples and validation summaries are
+provided with the submission evidence. The project source repository is
+\url{https://github.com/hasith2003/Robot-Arm}.
 
-\begin{thebibliography}{9}
-\bibitem{lectures} P. Jayasekara, \emph{EN3563 Robotics course notes},
-Lectures 6--9 and 11--12, Department of Electronic and Telecommunication
-Engineering, University of Moratuwa. Supplied lecture PDFs.
-\bibitem{urdf} Maarten de Vries / fizyr, \emph{Yaskawa GP7 support}, Apache-2.0,
-imported geometry and meshes, commit
-\texttt{47ebe48f9177c79ab0417625ed121c3edb46234a}.
-\url{https://github.com/fizyr/yaskawa_gp7_support}.
-\bibitem{jtc} ROS 2 Controllers, \emph{Joint Trajectory Controller:
-Trajectory Representation, Jazzy}.
-\url{https://control.ros.org/jazzy/doc/ros2_controllers/joint_trajectory_controller/doc/trajectory.html}.
-\bibitem{control} ROS 2 Control, \emph{gz\_ros2\_control, Jazzy}.
-\url{https://control.ros.org/jazzy/doc/gz_ros2_control/doc/index.html}.
-\end{thebibliography}
 \end{document}

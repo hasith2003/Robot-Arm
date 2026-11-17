@@ -1,0 +1,46 @@
+{
+  "total_samples": 1605,
+  "samples_per_segment": 321,
+  "segments": [
+    {
+      "segment": "descent",
+      "samples": 321,
+      "duration_s": 5,
+      "max_position_error_m": 4.572495172850934e-09,
+      "max_rotation_error_rad": 5.474788365544834e-11
+    },
+    {
+      "segment": "lift",
+      "samples": 321,
+      "duration_s": 6,
+      "max_position_error_m": 9.02044319819161e-09,
+      "max_rotation_error_rad": 9.662876213987335e-11
+    },
+    {
+      "segment": "transfer",
+      "samples": 321,
+      "duration_s": 8,
+      "max_position_error_m": 1.695504313334497e-08,
+      "max_rotation_error_rad": 2.340881588706688e-10
+    },
+    {
+      "segment": "lower",
+      "samples": 321,
+      "duration_s": 5,
+      "max_position_error_m": 4.406363174948712e-09,
+      "max_rotation_error_rad": 3.1424756385582344e-10
+    },
+    {
+      "segment": "retreat",
+      "samples": 321,
+      "duration_s": 5,
+      "max_position_error_m": 4.4021037248395285e-09,
+      "max_rotation_error_rad": 1.572204462465678e-10
+    }
+  ],
+  "max_position_error_m": 1.695504313334497e-08,
+  "max_rotation_error_rad": 3.1424756385582344e-10,
+  "position_tolerance_m": 0.0001,
+  "rotation_tolerance_rad": 0.001,
+  "scope": "Nominal planned carried-object segments with corrected standard-GP7 limits; sampled interpolation check, not a continuous-error bound."
+}

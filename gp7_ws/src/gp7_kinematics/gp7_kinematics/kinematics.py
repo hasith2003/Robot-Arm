@@ -29,8 +29,8 @@ class GP7Kinematics:
     DH6_TO_TOOL0 = np.diag([1., -1., -1., 1.])
     DH6_TO_TCP = DH6_TO_TOOL0.copy()
     DH6_TO_TCP[2, 3] = -0.1075
-    LOWER = np.deg2rad([-170, -65, -116, -190, -135, -360])
-    UPPER = np.deg2rad([170, 145, 255, 190, 135, 360])
+    LOWER = np.deg2rad([-170, -65, -70, -190, -135, -360])
+    UPPER = np.deg2rad([170, 145, 190, 190, 135, 360])
     SPEED = np.deg2rad([375, 315, 410, 550, 550, 1000])
 
     @staticmethod

@@ -1,0 +1,27 @@
+{
+  "configurations": 1004,
+  "includes": [
+    "zero pose",
+    "recorded bent pose",
+    "simultaneous lower bounds",
+    "simultaneous upper bounds",
+    "1000 random within corrected bounds"
+  ],
+  "maximum_errors": {
+    "dh1_perpendicular_dot": 3.3306690738754696e-16,
+    "dh2_axis_line_intersection_m": 4.1210545969265795e-16,
+    "right_hand_cross_error": 6.665607237548707e-16,
+    "orthonormal_error": 6.661338147750939e-16,
+    "determinant_error": 6.661338147750939e-16,
+    "urdf_positive_joint_axis_error": 8.238311188599651e-16,
+    "urdf_joint_axis_line_error_m": 6.154192834248945e-16,
+    "tcp_position_error_m": 7.947987303456224e-16,
+    "tcp_orientation_error_rad": 7.966820258013646e-16
+  },
+  "pass_tolerance": 1e-12,
+  "dh1": "x_i dot z_(i-1) = 0",
+  "dh2": "Infinite axis lines x_i and z_(i-1) intersect; signed line parameters may be negative",
+  "right_hand_rule": "x_i cross y_i = z_i; R_i transpose R_i = I; det(R_i)=+1",
+  "zero_pose_side_view": "+X right, +Z up, +Y into page: dot=-Y/out; cross=+Y/in",
+  "scope": "Model-coordinate and finite-precision checks; physical CAD/controller calibration not asserted."
+}

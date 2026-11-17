@@ -23,3 +23,8 @@ use the project's ROS 2 launcher instead.
 The gripper STL meshes are original simplified project geometry, with a
 reproducible Python generator. No proprietary assignment PDFs or SolidWorks
 archives are distributed in this repository.
+
+The imported U-axis position bounds were subsequently corrected from
+-116/+255 to -70/+190 degrees for the supplied standard-GP7 specification,
+after checking coordinate equivalence against the ROS-Industrial GP7 model.
+See `JOINT_LIMIT_CORRECTION.md` for the mapping and validation evidence.

@@ -33,6 +33,13 @@ class DHKinematicsTest(unittest.TestCase):
         np.testing.assert_allclose(self.model.LOWER, self.urdf.lower)
         np.testing.assert_allclose(self.model.UPPER, self.urdf.upper)
         np.testing.assert_allclose(self.model.SPEED, self.urdf.speed)
+        # Independent standard-GP7 specification, manufacturer Table 5-2.
+        # Catch the prior imported U-axis -116/+255 range even if both the
+        # D-H constants and URDF were accidentally changed together.
+        np.testing.assert_allclose(self.urdf.lower,
+            np.deg2rad([-170, -65, -70, -190, -135, -360]))
+        np.testing.assert_allclose(self.urdf.upper,
+            np.deg2rad([170, 145, 190, 190, 135, 360]))
 
     def test_full_tcp_jacobian_matches_urdf_finite_differences(self):
         rng = np.random.default_rng(8)

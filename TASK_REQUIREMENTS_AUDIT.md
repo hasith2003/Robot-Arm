@@ -1,5 +1,11 @@
 # GP7 task-sheet audit — 17 November 2026
 
+**Later limit correction:** the standard GP7 U-axis bounds are now -70/+190
+degrees after coordinate verification against ROS-Industrial. The corrected
+minimum margin on the recorded trajectory is 0.471 rad, and a fresh Gazebo
+cycle passes with those bounds enforced. The 1.030 rad value in the original
+run summary below is historical. See `JOINT_LIMIT_CORRECTION.md`.
+
 The accepted reachable scene completed fresh headless and GUI runs, including
 pickup, transport, release, settlement and retreat. The scene positions were
 not changed. This validates the tested simulation with the tolerances below;
@@ -18,13 +24,13 @@ it is not a claim of exact physical accuracy or success for every possible pose.
 | Box B orientation unchanged throughout motion | PASS within the 0.035 rad acceptance threshold. Monitoring now begins at the initial measured box pose, before approach, descent and jaw closing. Recorded maximum angular change was about 1.16e-8 degrees. |
 | Smooth velocity profile | PASS: quintic Cartesian position timing; continuous cubic joint interpolation with position, velocity and acceleration supplied to the trajectory controller. Every segment starts and ends at zero commanded joint velocity. |
 | Joint ranges and maximum speeds | PASS: command extrema checked between waypoints against URDF limits; measured positions and speeds independently checked during execution. Full Cartesian interpolation checked for TCP position and orientation between IK knots. |
-| Visualize and label coordinate frames | Exact FK-generated figure supplied in `validation/latest/dh_coordinate_frames.png` and PDF. Frame definitions and directions are in `KINEMATICS_DERIVATION.md`. The earlier generated photo annotations are schematic and should not be used to measure frame locations. |
+| Visualize and label coordinate frames | Exact FK-generated figure supplied in `analysis/dh_coordinate_frames.png` and PDF. Frame definitions and directions are in `KINEMATICS_DERIVATION.md`. The earlier generated photo annotations are schematic and should not be used to measure frame locations. |
 | D-H table and forward matrices | Implemented and documented in `KINEMATICS_DERIVATION.md`; tests compare the D-H model against the independently expanded URDF chain. Include fixed base and TCP transforms. |
 | Inverse kinematics equations | Bounded numerical IK implemented; residual definitions and DLS derivation documented. Runtime task uses bounded least squares on the live URDF. IK alone does not prove collision avoidance. |
 | IK, trajectory and velocity-control snippets in report | Source locations below supply these; final submission must include the snippets and explain the actual control architecture. |
 | Explanation of implementation and results | This audit, the derivation and recorded numerical evidence provide the content. |
 | Member index numbers and concise final report | STILL REQUIRED: no final submission report with member indices was located. Source documentation alone is not the finished report. |
-| Screen-recorded simulation video | Actual GUI render recording supplied: `validation/latest/gp7_verified_demo_720p.mp4`. It shows the arm approach, pickup, transfer, placement and retreat. Screen layout/camera changes are visible; no object animation or synthetic motion was substituted. |
+| Screen-recorded simulation video | Actual GUI render recording supplied: `analysis/audit_video/gp7_verified_demo_720p.mp4`. It shows the arm approach, pickup, transfer, placement and retreat. Screen layout/camera changes are visible; no object animation or synthetic motion was substituted. |
 | Optional GitHub repository | Existing `Robot-Arm` Git checkout found. Publishing/submitting it and adding a report link remain submission steps. |
 
 ## Confirmed corrections
@@ -93,13 +99,13 @@ failure of an unreachable target, all carried-object segments including
 interpolation between knots, spline speed and position overshoot, controller
 interpolation equivalence, and state-machine transition guards.
 
-Evidence directories `../analysis/audit_headless`, `../analysis/audit_gui` and
-`../analysis/audit_video` contain `result.json` plus CSV measurements. Final plots:
+Evidence directories `analysis/audit_headless`, `analysis/audit_gui` and
+`analysis/audit_video` contain `result.json` plus CSV measurements. Final plots:
 
-- `validation/latest/measured_results.png` / `.pdf`
-- `validation/latest/commanded_velocities.png` / `.pdf`
-- `validation/latest/final.png`
-- `validation/latest/simulation.log`
+- `analysis/audit_video/measured_results.png` / `.pdf`
+- `analysis/audit_video/commanded_velocities.png` / `.pdf`
+- `analysis/audit_video/final.png`
+- `analysis/audit_video/simulation.log`
 
 Relevant source for the final report:
 

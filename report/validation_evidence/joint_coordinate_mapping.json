@@ -1,0 +1,21 @@
+{
+  "reference_url": "https://github.com/ros-industrial/motoman/blob/noetic-devel/motoman_gp7_support/urdf/gp7_macro.xacro",
+  "configurations": 1001,
+  "errors": {
+    "tcp_matrix": 4.440892098500626e-16,
+    "positive_axis": 0.0,
+    "axis_line_m": 2.8798499653658235e-16
+  },
+  "mapping": "q_project_i = q_reference_i for all six joints; no sign or zero-angle offset",
+  "reason": "Changes of axis-origin point along the same revolute axis commute with its rotation. All positive axes and variable rotations agree.",
+  "standard_gp7_u_limits_deg": [
+    -70,
+    190
+  ],
+  "previous_imported_u_limits_deg": [
+    -116,
+    255
+  ],
+  "manufacturer_gp7_document": "Supplied G7_manual.pdf, section 5.1, Table 5-2 (GP7/AR900); supplied GP7_GP8_datasheet.pdf",
+  "scope": "Coordinate equivalence of these two kinematic descriptions; not physical controller calibration."
+}

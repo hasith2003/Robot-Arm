@@ -1,5 +1,12 @@
 # GP7 review against the six supplied lecture-note PDFs
 
+**Subsequent joint-limit review:** the general GP7 U-axis bounds were corrected
+to -70/+190 degrees after verifying an identity joint-coordinate mapping
+against ROS-Industrial. This does not alter the frame or FK conclusions below.
+The original geometric checks used the earlier imported software bounds;
+they were kinematic identities, not proof of manufacturer limit compliance.
+See `JOINT_LIMIT_CORRECTION.md` and the final submission evidence.
+
 Reviewed 17 November 2026. Page references below are **PDF page numbers**, not
 necessarily the slide numbers printed in the corner. The PDFs were treated as
 technical reference material. Handwritten annotations and pasted chat/AI
@@ -26,9 +33,9 @@ correct. Use the exact matrix-generated figures instead.
 
 Correct figures:
 
-- `validation/latest/dh_coordinate_frames.pdf`: full right-handed D-H triads at q=0;
+- `analysis/dh_coordinate_frames.pdf`: full right-handed D-H triads at q=0;
   this is the figure already included in the compiled report.
-- `validation/lecture_alignment/verified_bent_pose_axes.pdf`: exact projected
+- `analysis/lecture_notes/verified_bent_pose_axes.pdf`: exact projected
   origins and joint z-axis directions at the recorded retreat pose. This
   intentionally shows joint z axes only; it does not claim to show full triads.
 
@@ -306,7 +313,7 @@ uses the correct tool rotation; this is not a runtime failure.
 
 ## 6. Evidence and recommended actions
 
-Fresh checks in `validation/lecture_alignment/verification_results.json`:
+Fresh checks in `analysis/lecture_notes/verification_results.json`:
 
 | Check | Maximum error / finding |
 |---|---:|
