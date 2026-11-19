@@ -49,6 +49,42 @@ The measured orientation value can vary slightly between runs. The robot
 should release the red cube onto the centre of the blue box and retreat.
 To repeat the full cycle, stop the launch and run the script again.
 
+## Adjust transport speed
+
+```bash
+GP7_SPEED_FACTOR=2 bash ~/Downloads/Robotics/gp7_ws/run_pick_place.sh
+```
+
+Default factor 1 preserves the original timing. Factor 2 halves the durations
+of lift, transfer, lowering and retreat. Approach, pickup descent, finger
+motion and settling/verification waits keep their original timing. Factor 1.5
+is a smaller increase. Waypoint counts and existing position/speed and tracking
+checks remain unchanged. Total task time is not halved. The final transport-only
+speed setting has not been verified by a completed full simulation trial.
+
+The environment variable also works with `run_pick_place_at.sh`. A new
+position/speed combination needs separate validation. Stop the previous
+simulation before starting another.
+
+## Try a different pickup position
+
+Keep the destination unchanged and place the small cube at another ground-level
+position (X and Y in metres):
+
+```bash
+bash ~/Downloads/Robotics/gp7_ws/run_pick_place_at.sh 0.30 -0.30
+```
+
+Stop the previous GUI simulation with Ctrl+C first. The helper creates a separate
+temporary world with cube centre Z=0.025 m; the default world is unchanged. For a
+fresh clone, substitute `~/Downloads/Robot-Arm` for `~/Downloads/Robotics`.
+The existing `gui:=false` argument is also supported. Finite coordinates and
+initial overlap with Box A are checked, but this is not a workspace or collision
+validator. The executor still checks IK, interpolated joint limits, grasp
+alignment and measured placement; not every position is feasible. A successful
+trial is evidence for that tested scene only, not universal reachability or
+collision-free motion.
+
 ## Run from a fresh GitHub clone
 
 ```bash

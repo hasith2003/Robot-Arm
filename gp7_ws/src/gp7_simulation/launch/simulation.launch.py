@@ -22,7 +22,7 @@ def generate_launch_description():
     )
     # Run physics so controller activation can complete. gz_ros2_control holds
     # unclaimed joints; the simulation torque limits now allow it to do so.
-    gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')), launch_arguments={'gz_args': [PythonExpression(["'-r -v 3 ' if '", LaunchConfiguration('gui'), "' == 'true' else '-s -r -v 3 '"]), os.path.join(simulation_share, 'worlds', 'pick_place.sdf')]}.items())
+    gazebo = IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')), launch_arguments={'gz_args': [PythonExpression(["'-r -v 3 ' if '", LaunchConfiguration('gui'), "' == 'true' else '-s -r -v 3 '"]), LaunchConfiguration('world_file')]}.items())
     clock_bridge = Node(package='ros_gz_bridge', executable='parameter_bridge', arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock', '/box_b/attach@std_msgs/msg/Empty]gz.msgs.Empty', '/box_b/detach@std_msgs/msg/Empty]gz.msgs.Empty'], output='screen')
     state_publisher = Node(package='robot_state_publisher', executable='robot_state_publisher', parameters=[{'robot_description': robot_description, 'use_sim_time': True}])
     # Pass XML directly to the create node's parameter, avoiding discovery and
@@ -63,6 +63,7 @@ def generate_launch_description():
     )
     return LaunchDescription([
         DeclareLaunchArgument('gui', default_value='true'), mesh_resources,
+        DeclareLaunchArgument('world_file', default_value=os.path.join(simulation_share, 'worlds', 'pick_place.sdf')),
         DeclareLaunchArgument('demo', default_value='false'),
         DeclareLaunchArgument('pick_place', default_value='false'),
         SetEnvironmentVariable(name='GZ_SIM_SYSTEM_PLUGIN_PATH', value=os.pathsep.join(filter(None, [os.path.join(os.path.dirname(os.path.dirname(get_package_share_directory('gp7_grasp'))), 'lib'), os.environ.get('GZ_SIM_SYSTEM_PLUGIN_PATH', '')]))),

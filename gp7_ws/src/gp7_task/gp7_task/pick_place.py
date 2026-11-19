@@ -27,6 +27,10 @@ from gp7_task.controller_trajectory import smooth_joint_trajectory
 class PickPlace(Node):
     def __init__(self):
         super().__init__('gp7_pick_place')
+        self.speed_factor = float(os.environ.get('GP7_SPEED_FACTOR', '1.0'))
+        if not np.isfinite(self.speed_factor) or self.speed_factor <= 0:
+            raise ValueError('GP7_SPEED_FACTOR must be finite and greater than zero')
+        self.get_logger().info(f'Lift/transfer/lower/retreat speed factor: {self.speed_factor:g}')
         self.arm = ActionClient(self, FollowJointTrajectory, '/arm_controller/follow_joint_trajectory')
         self.gripper = ActionClient(self, FollowJointTrajectory, '/gripper_controller/follow_joint_trajectory')
         self.joints = {}; self.joint_time = 0
@@ -41,7 +45,7 @@ class PickPlace(Node):
         self.monitor = False; self.orientation_error_max = 0.; self.failure = None
         self.started = time.monotonic()
         self.joint_samples = []; self.object_samples = []; self.command_samples = []
-        self.states = []; self.result = {'passed': False}
+        self.states = []; self.result = {'passed': False, 'speed_factor': self.speed_factor}
         self.measured_speed_max = np.zeros(6)
         self.position_margin_min = float('inf')
 
@@ -200,8 +204,10 @@ class PickPlace(Node):
         self.get_logger().info(f'Planning pick={self.pick}, place={self.place}, pregrasp joints={pre_q}')
         # Plan every Cartesian segment before touching the object.
         segments=[]; seed=pre_q
-        for start,end,seconds in [(pre,self.pick,5),(self.pick,lift,6),(lift,above,8),(above,release,5),(release,above,5)]:
-            path=self.model.cartesian(start,end,down,seed,seconds)
+        for index,(start,end,seconds) in enumerate([(pre,self.pick,5),(self.pick,lift,6),(lift,above,8),(above,release,5),(release,above,5)]):
+            # Preserve the validated pickup timing; accelerate transport only.
+            duration = seconds if index == 0 else seconds/self.speed_factor
+            path=self.model.cartesian(start,end,down,seed,duration)
             smooth_joint_trajectory(path, self.model.lower, self.model.upper, self.model.speed)
             segments.append(path); seed=path[-1][1]
         self.get_logger().info('URDF IK preflight passed: all Cartesian waypoints keep the tool pointing down.')
@@ -209,6 +215,7 @@ class PickPlace(Node):
         self.fingers(0.)
         # Quintic joint approach is used only while the box is on the ground.
         approach=[(s*7,home+(10*s**3-15*s**4+6*s**5)*(pre_q-home)) for s in np.linspace(0,1,81)]
+        smooth_joint_trajectory(approach, self.model.lower, self.model.upper, self.model.speed)
         self.move(approach); self.advance('motion_complete')
         self.move(segments[0]); self.advance('motion_complete')
         # 0.5 mm clearance on each face prevents the simplified contact solver
